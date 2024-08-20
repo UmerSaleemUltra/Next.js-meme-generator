@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import Modal from './'; // Import the Modal component
 
 const Modal = () => {
   const router = useRouter();
