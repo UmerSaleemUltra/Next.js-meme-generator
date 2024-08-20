@@ -3,9 +3,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import Modal from './Modal'; // Import the Modal component
+import Modal from './'; // Import the Modal component
 
-const Page = () => {
+const Modal = () => {
   const router = useRouter();
   const [memes, setMemes] = useState([]);
   const [selectedMeme, setSelectedMeme] = useState(null);
@@ -57,4 +57,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Modal;
