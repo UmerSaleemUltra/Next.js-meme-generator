@@ -88,6 +88,15 @@ function DetailPage({ meme }) {
               >
                 Generate Meme
               </button>
+              {gen && gen.data.url && (
+                <a
+                  download="GeneratedMeme"
+                  href={gen.data.url}
+                  className="w-full inline-block mt-4 text-center py-3 px-4 bg-green-600 text-white font-semibold rounded-md hover:bg-green-700 transition duration-300 shadow-lg"
+                >
+                  Download Meme
+                </a>
+              )}
             </div>
           </div>
         </div>
