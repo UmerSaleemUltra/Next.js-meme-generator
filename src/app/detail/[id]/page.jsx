@@ -61,15 +61,20 @@ export default async function Detail({ params, searchParams }) {
 function DetailPage({ meme, generatedMemeUrl }) {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
-      <div className="bg-white shadow-2xl rounded-lg overflow-hidden w-full max-w-4xl transform transition-transform duration-300 hover:scale-105">
+      <div className="bg-white shadow-2xl rounded-lg overflow-hidden w-full max-w-4xl transform transition-transform duration-300 hover:scale-105 ">
         <div className="flex flex-col md:flex-row">
           <div className="md:w-1/2 p-6">
+          <p className=" text-gray-800 mb-4 justify-center text-center space-x-7 gap-4">
+           {meme.name}
+            </p>
             <img
               className="w-full h-auto rounded-lg shadow-md object-cover"
               src={generatedMemeUrl || meme.url}
               alt="Meme"
             />
           </div>
+          
+         
           <div className="md:w-1/2 p-6 flex flex-col justify-center bg-gray-100">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">
               Customize Your Meme
