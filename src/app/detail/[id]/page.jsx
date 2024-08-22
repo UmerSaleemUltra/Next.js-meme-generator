@@ -1,4 +1,3 @@
-// Client Component for interactive features
 "use client";
 
 import React, { useState } from 'react';
@@ -35,8 +34,8 @@ function DetailPage({ meme }) {
       return;
     }
 
-    const username = "UmerSaleem1"; // Replace with your Imgflip username
-    const password = "umersaleem8637"; // Replace with your Imgflip password
+    const username = "UmerSaleem2"; // Replace with your Imgflip username
+    const password = "@UmerSaleem8637"; // Replace with your Imgflip password
 
     const url = `https://api.imgflip.com/caption_image?template_id=${meme.id}&username=${username}&password=${password}&text0=${text}&text1=${text1}`;
 
@@ -45,45 +44,54 @@ function DetailPage({ meme }) {
       if (!res.ok) throw new Error("Failed to generate meme");
 
       const data = await res.json();
-      setGen(data);
+      if (data.success && data.data.url) {
+        setGen(data);
+      } else {
+        console.error("Error generating meme:", data.error_message || "Unknown error");
+      }
     } catch (error) {
       console.error("Error generating meme:", error);
     }
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-5 bg-gray-100">
-      {!gen ? (
-        <>
-          <img
-            className="max-w-full h-auto rounded shadow-lg"
-            src={meme.url}
-            alt="Meme"
-          />
-          <div className="mt-6 w-full max-w-md">
-            <input
-              placeholder="Top Text"
-              value={text}
-              className="w-full p-3 mb-4 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              onChange={(e) => setText(e.target.value)}
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-6">
+      <div className="bg-white shadow-2xl rounded-lg overflow-hidden w-full max-w-4xl transform transition-transform duration-300 hover:scale-105">
+        <div className="flex flex-col md:flex-row">
+          <div className="md:w-1/2 p-6">
+            <img
+              className="w-full h-auto rounded-lg shadow-md object-cover"
+              src={!gen ? meme.url : gen.data.url}
+              alt="Meme"
             />
-            <input
-              placeholder="Bottom Text"
-              value={text1}
-              className="w-full p-3 mb-4 border border-gray-300 rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
-              onChange={(e) => setText1(e.target.value)}
-            />
-            <button
-              className="w-full py-3 px-4 bg-indigo-600 text-white font-semibold rounded hover:bg-indigo-700 transition duration-200 shadow-lg"
-              onClick={generateMeme}
-            >
-              Generate Meme
-            </button>
           </div>
-        </>
-      ) : (
-        <img className="max-w-full h-auto rounded shadow-lg" src={gen.data.url} alt="Generated Meme" />
-      )}
+          <div className="md:w-1/2 p-6 flex flex-col justify-center bg-gray-100">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+              Customize Your Meme
+            </h2>
+            <div className="space-y-4">
+              <input
+                placeholder="Top Text"
+                value={text}
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                onChange={(e) => setText(e.target.value)}
+              />
+              <input
+                placeholder="Bottom Text"
+                value={text1}
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                onChange={(e) => setText1(e.target.value)}
+              />
+              <button
+                className="w-full py-3 px-4 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 transition duration-300 shadow-lg"
+                onClick={generateMeme}
+              >
+                Generate Meme
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
