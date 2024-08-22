@@ -15,7 +15,7 @@ export default async function Home() {
     }
 
     return (
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto p-4 ">
             <h1 className="text-3xl font-bold mb-6 text-center text-gray-800">Meme Gallery</h1>
             <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
                 {memes.map((meme) => (
